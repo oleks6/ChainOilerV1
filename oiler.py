@@ -44,7 +44,7 @@ def read_temp():
 
 
 
-currentTemperature = print(read_temp())  # Reads current temperature from temp sensor
+currentTemperature = read_temp()  # Reads current temperature from temp sensor
 pumpOn = 1  # Code to turn pump on
 pumpOff = 0  # Code to turn pum off
 dropinterval = 9
