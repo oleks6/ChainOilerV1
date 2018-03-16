@@ -26,7 +26,7 @@ def read_temp():
 
     # While the first line does not contain 'YES', wait for 0.2s
     # and then read the device file again.
-    while lines[0].strip()[-3:] =! 'YES':
+    while lines[0].strip()[-3:] != 'YES':
         time.sleep(0.2)
         lines = read_temp_raw()
 
