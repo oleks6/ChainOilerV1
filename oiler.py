@@ -40,15 +40,11 @@ def read_temp():
             temp_string = lines[1][equals_pos+2:]
             temp_c = float(temp_string) / 1000.0
             temp_f = temp_c * 9.0 / 5.0 + 32.0
-            return temp_c, temp_f
-
-        # Print out the temperature until the program is topped.
-        while True:
-            print(read_temp())
-            time.sleep(1)
+            return temp_f
 
 
-currentTemperature = 100  # Reads current temperature from temp sensor
+
+currentTemperature = print(read_temp())  # Reads current temperature from temp sensor
 pumpOn = 1  # Code to turn pump on
 pumpOff = 0  # Code to turn pum off
 dropinterval = 9
