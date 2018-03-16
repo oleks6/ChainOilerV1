@@ -21,7 +21,7 @@ def read_temp_raw():
     return lines
 
 # Convert the value of the sensor into a temperature
-def read_temp():
+def currenttemp():
     lines = read_temp_raw()  # Read the temperature 'device file'
 
     # While the first line does not contain 'YES', wait for 0.2s
@@ -30,25 +30,26 @@ def read_temp():
         time.sleep(0.2)
         lines = read_temp_raw()
 
-        # Look for the position of the '=' in the second ine of the
-        # device file.
-        equals_pos = lines[1].find('t')
+    # Look for the position of the '=' in the second line of the
+    # device file.
+    equals_pos = lines[1].find('t=')
 
-        # if the '=' is found, convert the rest of the line after the
-        # '=' into degrees Celsius, then degrees Fahrenheit
-        if equals_pos != -1:
-            temp_string = lines[1][equals_pos+2:]
-            temp_c = float(temp_string) / 1000.0
-            temp_f = temp_c * 9.0 / 5.0 + 32.0
-            return round(temp_c), round(temp_f)
+    # If the '=' is found, convert the rest of the line after the
+    # '=' into degrees Celsius, then degrees Fahrenheit
+    if equals_pos != -1:
+        temp_string = lines[1][equals_pos + 2:]
+        temp_c = float(temp_string) / 1000.0
+        temp_f = temp_c * 9.0 / 5.0 + 32.0
+        return round(temp_f)
 
 
+# Print out the current temperature
+print"Current temp is ", currenttemp()
 
-currentTemperature = read_temp()  # Reads current temperature from temp sensor
+currentTemperature = currenttemp()  # Reads current temperature from temp sensor
 pumpOn = 1  # Code to turn pump on
 pumpOff = 0  # Code to turn pum off
 dropinterval = 9
-print(currentTemperature)
 
 
 def tempsetting0():
